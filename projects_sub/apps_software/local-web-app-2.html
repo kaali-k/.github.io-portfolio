@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-based Point of Sale & Business Management Solution - Details</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Alpine.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom Styles and Tailwind Config -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            width: 80px;
+            margin: 1rem auto 2rem auto;
+        }
+        /* For web app screenshot images */
+        .webapp-screenshot {
+            width: 100%;
+            height: 250px; /* Fixed height for consistency */
+            object-fit: cover; /* Cover the area */
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* Indicate clickability */
+        }
+        /* Custom scrollbar for image gallery */
+        .image-gallery-scroll {
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #ff4b2b #2a2a2a; /* Firefox */
+        }
+        .image-gallery-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .image-gallery-scroll::-webkit-scrollbar-track {
+            background: #2a2a2a;
+            border-radius: 10px;
+        }
+        .image-gallery-scroll::-webkit-scrollbar-thumb {
+            background-color: #ff4b2b;
+            border-radius: 10px;
+            border: 2px solid #2a2a2a;
+        }
+        /* Modal specific styles */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#d63031',
+              secondary: '#ff4b2b',
+              darkbg: '#1a1a1a',
+              lighttext: '#e0e0e0',
+              cardbg: '#2a2a2a',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-darkbg text-lighttext" x-data="{ mobileMenuOpen: false, isModalOpen: false, currentImageSrc: '', currentImageAlt: '' }">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300"
+            :class="{ 'bg-black/80 backdrop-blur-md shadow-lg': window.scrollY > 50, 'bg-transparent': window.scrollY <= 50 }"
+            @scroll.window="window.scrollY > 50 ? true : false">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
+            <!-- Logo Link -->
+            <a href="../../index.html" class="text-2xl font-bold text-primary hover:text-secondary transition duration-300">K.S.D</a>
+
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex space-x-8 items-center">
+                <li><a href="../../index.html" class="hover:text-primary transition duration-300 font-medium">Home</a></li>
+                <li><a href="../../index.html#about" class="hover:text-primary transition duration-300 font-medium">About</a></li>
+                <li><a href="../../index.html#skills" class="hover:text-primary transition duration-300 font-medium">Skills</a></li>
+                <!-- Projects link styled as a button -->
+                <li><a href="../../projects.html" class="text-white bg-gradient-to-r from-primary to-secondary py-2 px-5 rounded-full hover:opacity-90 transition duration-300 font-semibold">Projects</a></li>
+                <li><a href="../../index.html#contact" class="hover:text-primary transition duration-300 font-medium">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden focus:outline-none text-lighttext hover:text-primary text-2xl z-50">
+                <i :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div x-show="mobileMenuOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 transform -translate-y-full"
+         x-transition:enter-end="opacity-100 transform translate-y-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 transform translate-y-0"
+         x-transition:leave-end="opacity-0 transform -translate-y-full"
+         class="fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center space-y-6 md:hidden"
+         @click.away="mobileMenuOpen = false">
+            <a href="../../index.html" @click="mobileMenuOpen = false" class="text-2xl hover:text-primary transition duration-300">Home</a>
+            <a href="../../index.html#about" @click="mobileMenuOpen = false" class="text-2xl hover:text-primary transition duration-300">About</a>
+            <a href="../../index.html#skills" @click="mobileMenuOpen = false" class="text-2xl hover:text-primary transition duration-300">Skills</a>
+            <a href="../../projects.html" @click="mobileMenuOpen = false" class="text-2xl text-white bg-gradient-to-r from-primary to-secondary py-2 px-5 rounded-full hover:opacity-90 transition duration-300 font-semibold">Projects</a>
+            <a href="../../index.html#contact" @click="mobileMenuOpen = false" class="text-2xl hover:text-primary transition duration-300">Contact</a>
+    </div>
+
+    <main class="py-20 pt-32 md:pt-40">
+        <section id="webapp-details" class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-2" data-aos="fade-up">Web-based Point of Sale & Business Management Solution</h2>
+            <div class="section-divider" data-aos="fade-up" data-aos-delay="100"></div>
+            <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="150">
+                Streamlining Sales, Billing, and Operational Insights for Small to Medium Businesses in a Local Environment.
+            </p>
+
+            <div class="bg-cardbg rounded-lg shadow-xl p-8 md:p-10 border-t-4 border-primary" data-aos="fade-up" data-aos-delay="200">
+                <!-- Web App Header (Icon, Title, Short Description) -->
+                <div class="flex flex-col md:flex-row items-center md:items-start mb-8">
+                    <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                        <i class="fas fa-chart-line text-7xl text-primary"></i> <!-- Icon for web app -->
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-white mb-2">Web-based Point of Sale & Business Management Solution</h3>
+                        <p class="text-gray-300 text-lg">Locally Deployable Web Application (Not a direct download, requires a local server environment like WAMP/XAMPP)</p>
+                        <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                            <button class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-5 rounded-full shadow-md transition duration-300 cursor-not-allowed opacity-70" disabled>
+                                <i class="fas fa-eye mr-2"></i> View Live (Local Only)
+                            </button>
+                            <!-- You can add another button here for "View Code" if it's on GitHub -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technologies Used -->
+                <h4 class="text-xl font-semibold text-white mb-4 mt-8">Technologies Used</h4>
+                <div class="text-gray-300 space-y-2 mb-8">
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>PHP:</strong> Core backend logic and server-side scripting for robust data processing and business rules.</li>
+                        <li><strong>MySQL:</strong> Relational database management system for efficient and reliable local data persistence and management.</li>
+                        <li><strong>HTML, CSS (Tailwind CSS):</strong> Structured content and modern, responsive user interface design, ensuring optimal viewing across various screen sizes.</li>
+                        <li><strong>JavaScript:</strong> Client-side scripting for interactive functionalities, real-time calculations, and dynamic UI updates.</li>
+                    </ul>
+                </div>
+
+                <!-- Screenshots Gallery -->
+                <h4 class="text-xl font-semibold text-white mb-4 mt-8">Screenshots</h4>
+                <div class="image-gallery-scroll flex space-x-4 pb-4 mb-8">
+                    <!-- Updated image sources for Local Web App 2 and added click handlers for modal -->
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/login.webp'; currentImageAlt = 'Login Page Screenshot'" src="software2/login.webp" alt="Login Page Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/dashboard.webp'; currentImageAlt = 'Dashboard Overview Screenshot'" src="software2/dashboard.webp" alt="Dashboard Overview Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/billing.webp'; currentImageAlt = 'Billing Interface Screenshot'" src="software2/billing.webp" alt="Billing Interface Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/manageitem.webp'; currentImageAlt = 'Manage Items Screenshot'" src="software2/manageitem.webp" alt="Manage Items Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/billdetails.webp'; currentImageAlt = 'Bill Details Screenshot'" src="software2/billdetails.webp" alt="Bill Details Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/salereport.webp'; currentImageAlt = 'Sales Reports Screenshot'" src="software2/salereport.webp" alt="Sales Reports Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/report.webp'; currentImageAlt = 'Income & Expense Report Screenshot'" src="software2/report.webp" alt="Income & Expense Report Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/manageusers.webp'; currentImageAlt = 'Manage Users Screenshot'" src="software2/manageusers.webp" alt="Manage Users Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                    <img @click="isModalOpen = true; currentImageSrc = 'software2/profile.webp'; currentImageAlt = 'User Profile Screenshot'" src="software2/profile.webp" alt="User Profile Screenshot" class="webapp-screenshot flex-shrink-0 w-80 md:w-96 lg:w-[450px]">
+                </div>
+
+                <!-- Detailed Description -->
+                <h4 class="text-xl font-semibold text-white mb-4">About This Project</h4>
+                <div class="text-gray-300 space-y-4">
+                    <p>
+                        This is a comprehensive web-based Point of Sale (POS) and business management application designed to streamline daily operations for small to medium-sized retail or service establishments. Developed using a robust PHP/MySQL backend and a modern HTML/CSS/JavaScript frontend, it provides intuitive tools for transaction processing, item management, and operational insights, ensuring efficient management in a local, offline-first environment. Its design prioritizes ease of use and local data control, making it an ideal solution for businesses requiring a reliable in-house system.
+                    </p>
+                    <p class="font-semibold text-primary">Key Features / Highlights:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Secure User Management:</strong> Implements a role-based authentication system (Owner, Worker) ensuring secure access and appropriate permissions for different users.</li>
+                        <li><strong>Efficient Billing Operations:</strong> Facilitates quick and accurate bill creation with seamless item selection (including main items and add-ons with multiple size options), real-time calculation of subtotals, taxes, and total amounts, and dynamic balance calculation based on paid amounts. Supports instant bill saving and receipt printing.</li>
+                        <li><strong>Comprehensive Item Management:</strong> Offers full control over the product catalog, allowing for easy addition, viewing, editing, and deletion of both main items and add-ons, including their prices, sizes, and availability status.</li>
+                        <li><strong>Detailed Bill Tracking & Reporting:</strong> Provides a centralized system to view all saved bills, with powerful filtering options by date range and search functionality by bill ID. Each bill can be viewed in detail, reprinted, or deleted (for authorized users).</li>
+                        <li><strong>Financial Overview & Analytics:</strong> Features a dynamic dashboard providing real-time summaries of total sales, total expenses, net profit/loss, and total bills. Dedicated reports pages offer in-depth sales analysis and income/expense tracking for informed business decisions.</li>
+                        <li><strong>User-Centric Customization:</strong> Includes a dedicated profile management section for users to view their details and change passwords. Business-specific settings (name, address, currency, tax rate, receipt footer) are configurable for tailored operations.</li>
+                        <li><strong>Local Data Persistence:</strong> Utilizes a MySQL database for robust and efficient local data storage, ensuring data availability even without an internet connection.</li>
+                        <li><strong>Automated Receipt Generation:</strong> Enables instant printing of transaction receipts for completed orders, designed for standard thermal receipt printers.</li>
+                    </ul>
+                    <p class="font-semibold text-primary mt-6">Development Focus:</p>
+                    <p>
+                        The development prioritized a modular and maintainable architecture using PHP for backend logic and MySQL for data management, ensuring scalability and data integrity in a local environment. Emphasis was placed on creating a highly responsive and user-friendly web interface with Tailwind CSS and JavaScript, ensuring a smooth and efficient user experience across various devices. The system is designed for easy local deployment, providing businesses with full control over their data and operations.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Back to My Creations Button -->
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="250">
+                <a href="mycreations.html" class="inline-block bg-gray-700 text-lighttext font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-600 hover:scale-105 transform transition duration-300">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to My Creations
+                </a>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Image Modal (Pop-up) -->
+    <div x-show="isModalOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-[100] flex items-center justify-center modal-overlay"
+         @click.self="isModalOpen = false"> <!-- Close when clicking on overlay -->
+        <div class="relative bg-cardbg p-4 rounded-lg shadow-2xl modal-content">
+            <button @click="isModalOpen = false" class="absolute top-2 right-4 text-lighttext hover:text-primary transition duration-300 text-4xl font-bold focus:outline-none">&times;</button>
+            <img :src="currentImageSrc" :alt="currentImageAlt" class="modal-image">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-500 py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-6">
+                <p class="text-gray-400 mb-4 text-lg">Follow Me</p>
+                <div class="flex justify-center items-center space-x-5 md:space-x-6">
+                    <a href="https://web.facebook.com/kalana.sahan.79" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary transition duration-300 text-2xl"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/kalana._.sahan/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary transition duration-300 text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/kalana-sahan" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary transition duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <p>&copy; <span id="currentYear"></span> Kalana Sahan Dillimuni. All Rights Reserved.</p>
+            <p class="text-sm mt-2">Designed with <i class="fas fa-heart text-primary"></i> using Tailwind CSS & Alpine.js</p>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: false,
+            offset: 50,
+        });
+
+        // Dynamic Copyright Year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
