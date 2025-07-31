@@ -74,9 +74,7 @@
 <body class="bg-darkbg text-lighttext" x-data="{ mobileMenuOpen: false }">
 
     <!-- Header -->
-    <header class="fixed w-full top-0 z-50 transition-all duration-300"
-            :class="{ 'bg-black/80 backdrop-blur-md shadow-lg': window.scrollY > 50, 'bg-transparent': window.scrollY <= 50 }"
-            @scroll.window="window.scrollY > 50 ? true : false">
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
             <!-- Logo Link - Paths retained from user's provided code -->
             <a href="../../index.html" class="text-2xl font-bold text-primary hover:text-secondary transition duration-300">K.S.D</a>
@@ -149,21 +147,34 @@
                             <h4 class="text-xl font-semibold text-white mb-2">MyFinanceApp</h4>
                             <p class="text-gray-300 text-sm mb-4">A comprehensive mobile app for managing personal finances, tracking expenses, and budgeting.</p>
                             <!-- Link to MyFinanceApp detail page. It's in the same directory. -->
-                            <a href="my-finance-app.html"  class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 text-sm">
+                            <a href="my-finance-app.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 text-sm">
                                 <i class="fas fa-download mr-2"></i> Download App
                             </a>
                         </div>
                     </div>
 
-                    <!-- Mobile App 2 Card (KSD Protector) - NEW CARD ADDED HERE -->
+                    <!-- Mobile App 2 Card (KSD Protector) -->
                     <div class="bg-cardbg rounded-lg shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 border-t-4 border-primary" data-aos="fade-up" data-aos-delay="350">
                         <img src="app2/icon.png" alt="KSD Protector App Image" class="app-img-placeholder">
                         <div class="p-6">
                             <h4 class="text-xl font-semibold text-white mb-2">KSD Protector: Secure Password Manager</h4>
                             <p class="text-gray-300 text-sm mb-4">A secure, offline-first mobile application for generating, analyzing, and storing your passwords.</p>
                             <!-- Link to KSD Protector detail page. It's in the same directory. -->
-                            <a href="ksd-protector-app.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 text-sm">
-                                <i class="fas fa-download mr-2"></i> Download App
+                            <a href="ksd-protector-app.html"class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 text-sm">
+                                   <i class="fas fa-download mr-2"></i> Download App
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile App 3 Card (K.S.D Morse Code Translator) -->
+                    <div class="bg-cardbg rounded-lg shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 border-t-4 border-primary" data-aos="fade-up" data-aos-delay="400">
+                        <img src="app3/icon.png" alt="K.S.D Morse Code Translator App Image" class="app-img-placeholder">
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-white mb-2">K.S.D Morse Code Translator</h4>
+                            <p class="text-gray-300 text-sm mb-4">An intuitive mobile app for bidirectional Morse code translation and comprehensive reference.</p>
+                            <!-- Link to K.S.D Morse Code Translator detail page. It's in the same directory. -->
+                            <a href="ksd-morse-app.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 text-sm">
+                                   <i class="fas fa-download mr-2"></i> Download App
                             </a>
                         </div>
                     </div>
@@ -185,8 +196,8 @@
                         <div class="p-6">
                             <h4 class="text-xl font-semibold text-white mb-2">Point of Sale (POS) Desktop Application</h4>
                             <p class="text-gray-300 text-sm mb-4">A comprehensive POS desktop application for streamlining business operations, inventory, and analytics. Built with Electron.js, HTML, CSS (Tailwind), JavaScript, SQLite3, Chart.js, and Node.js.</p>
-                            <a href="desktop-software1.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 text-sm">
-                                <i class="fas fa-info-circle mr-2"></i> Learn More
+                            <a href="desktop-software1.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 text-sm">
+                                <i class="fas fa-globe mr-2"></i> View Project
                             </a>
                         </div>
                     </div>
